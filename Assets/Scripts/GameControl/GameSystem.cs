@@ -27,6 +27,9 @@ namespace GameControl
             finish = false;
             playerMark = player;
             AIMark = player == 1 ? 2 : 1;
+            AI.AIMark = AIMark;
+            AI.PlayerMark = playerMark;
+
         }
 
         public void AiDrop()
@@ -74,6 +77,13 @@ namespace GameControl
             if (board.GetBoardPositionMark(i, j, out var mark))
                 return mark;
             return 0;
+        }
+
+        public void PlayerSurrender()
+        {
+            finish = true;
+            winner = AIMark;
+            UpdateChessView.Invoke();
         }
     }
 

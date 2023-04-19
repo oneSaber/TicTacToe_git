@@ -33,10 +33,10 @@ namespace GameControl
             UIModule.AddNewView(chessBoardView);
         }
 
-        public GameSystem CreateNewGameSystem(int player)
+        public GameSystem CreateNewGameSystem(int player, int aiLevel)
         {
             var system = new GameSystem();
-            system.BeginNewGame(player,1);
+            system.BeginNewGame(player,aiLevel);
             return system;
         }
     }

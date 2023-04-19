@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\UILogicView\StartView.cs" />
      <Compile Include="Assets\Scripts\GameControl\GameSystem.cs" />
      <Compile Include="Assets\Scripts\GameModel\GamePrefabConfig.cs" />
+     <Compile Include="Assets\Scripts\UILogicView\Binder\ChessBoardBinder.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Resources\UI" />
@@ -75,6 +76,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <Folder Include="Assets\ArtWork\_Heathen Engineering\Assets\Common\Images\Heathen Corporate" />
      <Folder Include="Assets\Resources\Configs" />
+     <Folder Include="Assets\Scripts\UILogicView\Binder" />
      <Folder Include="Assets\Scripts\GameModel" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\TextMesh Pro\Resources" />

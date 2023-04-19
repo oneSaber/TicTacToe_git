@@ -1,5 +1,6 @@
 ﻿using System;
 using GameControl;
+using UILogicView.Binder;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,43 +9,19 @@ namespace UILogicView
     [Serializable]
     public class ChessBoardView: UIView
     {
-        #region UI组件
-        public Sprite Player1Icon;
-        public Sprite Player2Icon;
-        public GameObject ChessPanel;
-        
-        public GameObject BeginPanel;
-        public Transform ButtonGrid;
-        public Button ChoosePlayer1;
-        public Button ChoosePlayer2;
-
-        public GameObject IconPanel;
-        public Image PlayerIcon;
-        public Image AIIcon;
-
-        public GameObject OperationPanel;
-        public Button ReturnStartPanel;
-        public Button ReStartGame;
-        public Button Surrender;
-
-        public GameObject ResultPanel;
-        public GameObject WinWord;
-        public GameObject FailureWord;
-        public Button ResultRestart;
-        public Button ResultReturnStartPanel;
+        public ChessBoardBinder Binder;
         
 
-        #endregion
-        
         private GlobalGameControl control;
         private GameSystem currentGameSystem;
 
         public void Init(GlobalGameControl control)
         {
+            Binder = GetComponent<ChessBoardBinder>();
             this.control = control;
-            ResultPanel.SetActive(false);
-            IconPanel.SetActive(false);
-            OperationPanel.SetActive(false);
+            Binder.ResultPanel.SetActive(false);
+            Binder.IconPanel.SetActive(false);
+            Binder.OperationPanel.SetActive(false);
             
             // InitBeginButton
             InitBeginPanel();
@@ -55,16 +32,13 @@ namespace UILogicView
 
         private void InitBeginPanel()
         {
-            BeginPanel.SetActive(true);
-            ChessPanel.SetActive(false);
-            ChoosePlayer1.onClick.AddListener(() =>
+            Binder.BeginPanel.SetActive(true);
+            Binder.ChessPanel.SetActive(false);
+            Binder.StartGameBtn.onClick.AddListener(() =>
             {
-                currentGameSystem = this.control.CreateNewGameSystem(1);
-                StartGame();
-            });    
-            ChoosePlayer2.onClick.AddListener(() =>
-            {
-                currentGameSystem = this.control.CreateNewGameSystem(2);
+                var playerMaker = Binder.ChoosePlayerMaker.value+1;
+                var aiLevel = Binder.ChooseAILevel.value+1;
+                currentGameSystem = this.control.CreateNewGameSystem(playerMaker, aiLevel);
                 StartGame();
             });
         }
@@ -78,7 +52,7 @@ namespace UILogicView
                     var index = (2 - i) * 3 + j;
                     var ci = i;
                     var cj = j;
-                    var slot = ButtonGrid.GetChild(index);
+                    var slot = Binder.ButtonGrid.GetChild(index);
                     slot.Find("Icon").gameObject.SetActive(false);
                     var button = slot.GetComponent<Button>();
                     button.onClick.AddListener(() =>
@@ -96,16 +70,37 @@ namespace UILogicView
 
         private void StartGame()
         {
-            BeginPanel.SetActive(false);
-            ChessPanel.SetActive(true);
+            Binder.BeginPanel.SetActive(false);
+            Binder.ChessPanel.SetActive(true);
             // InitGrid
             InitChessGrid();
-            IconPanel.SetActive(true);
-            PlayerIcon.sprite = currentGameSystem.playerMark == 1 ? Player1Icon : Player2Icon;
-            AIIcon.sprite = currentGameSystem.AIMark == 1 ? Player1Icon : Player2Icon;
+            Binder.IconPanel.SetActive(true);
+            Binder.PlayerIcon.sprite = currentGameSystem.playerMark == 1 ? Binder.Player1Icon : Binder.Player2Icon;
+            Binder.AIIcon.sprite = currentGameSystem.AIMark == 1 ? Binder.Player1Icon : Binder.Player2Icon;
             if(currentGameSystem.AIMark == 1) currentGameSystem.AiDrop();
+            InitOperationPanel();
         }
 
+
+        public void InitOperationPanel()
+        {
+            Binder.OperationPanel.SetActive(true);
+            Binder.ReturnStartPanel.onClick.AddListener(() =>
+            {
+                UIModule.DestroyPanel(viewName);
+                control.CreateStatView();
+            });
+            Binder.ReStartGame.onClick.AddListener(() =>
+            {
+                UIModule.DestroyPanel(viewName);
+                control.StartNewGame();
+
+            });
+            Binder.Surrender.onClick.AddListener((() =>
+            {
+                currentGameSystem.PlayerSurrender();
+            }));
+        }
         private void UpdateChessBoard()
         {
             for (int i = 0; i < 3; i++)
@@ -113,12 +108,12 @@ namespace UILogicView
                 for (int j = 0; j < 3; j++)
                 {
                     var index = (2 - i) * 3 + j;
-                    var slot = ButtonGrid.GetChild(index);
+                    var slot = Binder.ButtonGrid.GetChild(index);
                     var img = slot.Find("Icon").GetComponent<Image>();
                     var mark = currentGameSystem.GetBoardMark(i, j);
                     if (mark != 0)
                     {
-                        img.sprite = mark == 1 ? Player1Icon : Player2Icon;
+                        img.sprite = mark == 1 ? Binder.Player1Icon : Binder.Player2Icon;
                         img.gameObject.SetActive(true);
                     }
                 }
@@ -134,15 +129,16 @@ namespace UILogicView
         private void ShowFinishPanel()
         {
             var winner = currentGameSystem.winner;
-            WinWord.SetActive(winner == currentGameSystem.playerMark);
-            FailureWord.SetActive(winner == currentGameSystem.AIMark);
-            ResultPanel.SetActive(true);
-            ResultRestart.onClick.AddListener(() =>
+            Binder.WinWord.SetActive(winner == currentGameSystem.playerMark);
+            Binder.FailureWord.SetActive(winner == currentGameSystem.AIMark);
+            Binder.TieWord.SetActive(winner == 0);
+            Binder.ResultPanel.SetActive(true);
+            Binder.ResultRestart.onClick.AddListener(() =>
             {
                 UIModule.DestroyPanel(viewName);
                 control.StartNewGame();
             });
-            ResultReturnStartPanel.onClick.AddListener(() =>
+            Binder.ResultReturnStartPanel.onClick.AddListener(() =>
             {
                 UIModule.DestroyPanel(viewName);
                 control.CreateStatView();

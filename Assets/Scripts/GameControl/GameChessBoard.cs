@@ -20,10 +20,19 @@ namespace GameControl
                 for (int j = 0; j < boardWidth; j++)
                     chessBoard[i, j] = 0;
             }
-
-            
         }
 
+        public int this[int i, int j]
+        {
+            get => GetBoardPositionMark(i, j, out var mark) ? mark : -1;
+            set => MarkPosition(i, j, value);
+        }
+
+        public bool SetPositionEmpty(int i, int j)
+        {
+            chessBoard[i, j] = 0;
+            return true;
+        }
         /// <summary>
         /// 标记棋盘的某个位置
         /// </summary>
@@ -172,6 +181,29 @@ namespace GameControl
             }
 
             return emptyPosition;
+        }
+        
+        
+
+        public GameChessBoard(GameChessBoard otherBoard)
+        {
+            boardWidth = otherBoard.boardWidth;
+            winCount = otherBoard.winCount;
+            chessBoard = new int[boardWidth, boardWidth];
+            for(int i = 0 ; i< boardWidth;i++)
+            {
+                for (int j = 0; j < boardWidth; j++)
+                    chessBoard[i, j] = otherBoard.chessBoard[i, j];
+            }
+        }
+    }
+    
+    public static class GameChessBoardFactor
+    {
+        public static GameChessBoard CreateTempBoard(GameChessBoard board)
+        {
+            var newBoard = new GameChessBoard(board);
+            return newBoard;
         }
     }
 }

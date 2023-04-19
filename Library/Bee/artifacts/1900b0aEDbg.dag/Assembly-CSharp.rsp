@@ -360,6 +360,7 @@
 "Assets/Scripts/GameControl/GameSystem.cs"
 "Assets/Scripts/GameControl/GlobalGameControl.cs"
 "Assets/Scripts/GameModel/GamePrefabConfig.cs"
+"Assets/Scripts/UILogicView/Binder/ChessBoardBinder.cs"
 "Assets/Scripts/UILogicView/ChessBoardView.cs"
 "Assets/Scripts/UILogicView/StartView.cs"
 "Assets/Scripts/UILogicView/UIModule.cs"

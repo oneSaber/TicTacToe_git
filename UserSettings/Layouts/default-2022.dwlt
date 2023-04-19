@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349.3334
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 111
+  controlID: 100
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -68,8 +68,8 @@ MonoBehaviour:
     y: 0
     width: 604.6666
     height: 1299.3334
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 484
     height: 770
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -323,23 +323,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/UI/ChessBoardPanel
+    - Assets/Scripts/GameControl
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/UI/ChessBoardPanel
+  - Assets/Scripts/GameControl
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\UnityProject\TicTacToe_git
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d25b0000
-    m_LastClickedID: 23506
-    m_ExpandedIDs: 00000000625b0000725b0000745b0000985b0000cc5b0000a4620000a6620000a862000000ca9a3b
+    m_SelectedIDs: 4c5c0000
+    m_LastClickedID: 23628
+    m_ExpandedIDs: 00000000245c0000265c0000285c00002c5c00002e5c0000305c0000325c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -367,7 +367,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000625b0000
+    m_ExpandedIDs: 00000000245c0000265c0000285c00002a5c00002c5c00002e5c0000305c0000325c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -509,7 +509,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 06a0feffcaa0feffb0acfeff96b4feffaeb4feffe2b6feff44c4feff2cfbffff
+      m_ExpandedIDs: 2ef7ffff7cf7ffffc4f8ffff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -850,9 +850,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -994.19635, y: 412.9328, z: 74.12331}
+    m_Target: {x: -1032.5034, y: 743.33984, z: 68.94625}
     speed: 2
-    m_Value: {x: -994.19635, y: 412.9328, z: 74.12331}
+    m_Value: {x: -1032.5034, y: 743.33984, z: 68.94625}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -902,9 +902,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2689.1245
+    m_Target: 3206.8308
     speed: 2
-    m_Value: 2689.1245
+    m_Value: 3206.8308
   m_Ortho:
     m_Target: 1
     speed: 2

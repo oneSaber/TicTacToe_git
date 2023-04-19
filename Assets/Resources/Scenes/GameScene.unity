@@ -422,3 +422,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 231ca9fdc76591341bccf9a6cabdb814, type: 2}
+  Canvas: {fileID: 1806867998379058312, guid: 87dad4651bb2b464c800b6286646e2da, type: 3}
